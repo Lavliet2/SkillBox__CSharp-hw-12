@@ -1,0 +1,47 @@
+﻿<Window x:Class="Homework_12.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework_12"
+        mc:Ignorable="d"
+        Title="Bank A" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ListView x:Name="lv_Clients" ItemsSource="{Binding Clients}" Margin="0,20,0,0">
+            <ListView.View>
+                <GridView>
+                    <!-- Колонки для Фамилии, Имени и Отчества -->
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" />
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}" />
+
+                    <!-- Колонка для баланса -->
+                    <GridViewColumn Header="Баланс">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CommonBalanc}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <!-- Колонка для кнопок -->
+                    <GridViewColumn Header="Действия">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Редактировать счёт" Click="OpenAccount_Click"/>
+                                    <Button Content="Удалить" Click="DelAccount_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="tb_Client" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="369"/>
+        <Button x:Name="btn_AddCkient" Content="Добавить" HorizontalAlignment="Left" Margin="374,-1,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label x:Name="lb_ErrorLog" Content="" HorizontalAlignment="Left" Margin="436,-1,0,0" VerticalAlignment="Top" Width="354" Foreground="Red"/>
+    </Grid>
+
+</Window>
